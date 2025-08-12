@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacs à Dos Personnalisés - Accueil</title>
+
+    <!-- Polices Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --primary-color: #6c63ff;         /* Bleu doux */
+            --secondary-color: #3f3d56;       /* Gris anthracite */
+            --accent-color: #ff6584;          /* Rose doux pour accents */
+            --light-bg: #f5f7fa;              /* Fond clair */
+            --card-bg: #ffffff;               /* Cartes blanches */
+            --text-color: #2d3748;            /* Texte sombre lisible */
+            --hover-effect: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --pattern-color: rgba(108, 99, 255, 0.06); /* Motif subtil */
+        }
+
+        /* RESET */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 50%, #e1bee7 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-top: 60px; /* espace pour menu fixe */
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                    radial-gradient(circle at 20% 30%, var(--pattern-color) 0%, transparent 25%),
+                    radial-gradient(circle at 60% 70%, var(--pattern-color) 0%, transparent 25%),
+                    radial-gradient(circle at 80% 20%, var(--pattern-color) 0%, transparent 20%),
+                    repeating-linear-gradient(45deg, rgba(67, 97, 238, 0.03) 0px, rgba(67, 97, 238, 0.03) 2px, transparent 2px, transparent 10px),
+                    repeating-linear-gradient(-45deg, rgba(247, 37, 133, 0.03) 0px, rgba(247, 37, 133, 0.03) 2px, transparent 2px, transparent 10px);
+            background-size: 300px 300px, 400px 400px, 250px 250px, 20px 20px, 20px 20px;
+            z-index: -1;
+        }
+        body::after {
+            content: "✏️📚🎒📝📐✂️🖍️📏📘✂️📐🖌️📝🎒📚✏️";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 24px;
+            opacity: 0.03;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* MENU FIXE EN HAUT */
+        .top-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .nav-container {
+            max-width: 1300px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .logo {
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+            font-size: 22px;
+            user-select: none;
+        }
+        .btn-categories {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 7px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            flex-shrink: 0;
+        }
+        .btn-categories:hover,
+        .btn-categories:focus {
+            background: var(--accent-color);
+            color: white;
+            outline: none;
+        }
+        #search-categories {
+            flex-grow: 1;
+            padding: 7px 12px;
+            border-radius: 25px;
+            border: none;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        #search-categories:focus {
+            outline: 2px solid var(--accent-color);
+        }
+
+        /* PANNEAU LATÉRAL */
+        .side-drawer {
+            position: fixed;
+            top: 0; left: 0;
+            height: 100vh;
+            width: 320px;
+            background: var(--card-bg);
+            box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+            padding: 20px;
+            box-sizing: border-box;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 9998;
+            overflow-y: auto;
+        }
+        .side-drawer.active {
+            transform: translateX(0);
+        }
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+        .side-drawer h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        #categories-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        #categories-list li {
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--hover-effect);
+            transition: box-shadow 0.3s ease;
+        }
+        #categories-list li:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        #categories-list a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+        }
+        #categories-list img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-radius: 10px 10px 0 0;
+        }
+        .cat-name {
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+        }
+        .badge {
+            margin-top: 5px;
+            padding: 3px 9px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 18px;
+            color: white;
+            user-select: none;
+        }
+        .badge.nouveau {
+            background-color: var(--accent-color);
+        }
+        .badge.populaire {
+            background-color: var(--secondary-color);
+        }
+        .badge.tendance {
+            background-color: var(--primary-color);
+        }
+
+        /* BOUTON CONTACT FLOTTANT */
+        .btn-contact {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--accent-color);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            font-size: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 8px 15px rgba(255,101,132,0.4);
+            transition: background-color 0.3s ease;
+            z-index: 10000;
+        }
+        .btn-contact:hover,
+        .btn-contact:focus {
+            background: #e94f73;
+            outline: none;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .side-drawer {
+                width: 85vw;
+                padding: 15px;
+            }
+            #categories-list {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .top-nav {
+                padding: 10px 15px;
+            }
+            .nav-container {
+                gap: 10px;
+            }
+            .btn-categories {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 400px) {
+            #search-categories {
+                font-size: 14px;
+            }
+        }
+
+        /* CONTENU EXISTANT (header, promo, categories) */
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Fredoka', cursive;
+            font-weight: 600;
+            font-size: 28px;
+        }
+
+        .decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .promo-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 1300px;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 40px;
+            max-width: 1300px;
+            margin: 30px auto;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--hover-effect);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            animation: cardEntrance 0.6s ease-out;
+            animation-fill-mode: backwards;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .card img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .card:hover img {
+            transform: scale(1.02);
+        }
+        .card-title {
+            padding: 18px 15px;
+            font-size: 18px;
+            font-weight: 500;
+            background-color: var(--card-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease;
+        }
+        .card:hover .card-title {
+            background-color: #f5f5f5;
+        }
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 900px) {
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 30px;
+            }
+        }
+        @media (max-width: 600px) {
+            .categories {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+            .card img {
+                height: 350px;
+            }
+            header {
+                font-size: 22px;
+                padding: 20px 15px;
+            }
+            .promo-banner {
+                margin: 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- MENU FIXE EN HAUT -->
+<nav class="top-nav" role="navigation" aria-label="Menu principal">
+    <div class="nav-container">
+        <div class="logo">🎒 Sacs Perso</div>
+        <button class="btn-categories" aria-haspopup="true" aria-controls="side-drawer" aria-expanded="false" aria-label="Ouvrir le menu catégories">
+            Catégories ▾
+        </button>
+        <input
+                type="search"
+                id="search-categories"
+                placeholder="Rechercher une catégorie..."
+                autocomplete="off"
+                aria-label="Recherche catégories"
+        />
+    </div>
+</nav>
+
+<!-- PANNEAU LATÉRAL CATÉGORIES -->
+<aside class="side-drawer" id="side-drawer" aria-hidden="true">
+    <button class="drawer-close" aria-label="Fermer le menu catégories">×</button>
+    <h2>Catégories</h2>
+    <ul id="categories-list">
+        <li data-name="Naruto" data-tag="Nouveau">
+            <a href="naruto.html">
+                <img src="images/naruto1.jpg" alt="Naruto" />
+                <span class="cat-name">Naruto</span>
+                <span class="badge nouveau">Nouveau</span>
+            </a>
+        </li>
+        <li data-name="Dragon Ball Z" data-tag="Populaire">
+            <a href="dbz.html">
+                <img src="images/dbz.jpg" alt="Dragon Ball Z" />
+                <span class="cat-name">Dragon Ball Z</span>
+                <span class="badge populaire">Populaire</span>
+            </a>
+        </li>
+        <li data-name="One Piece">
+            <a href="onepiece.html">
+                <img src="images/one.jpg" alt="One Piece" />
+                <span class="cat-name">One Piece</span>
+            </a>
+        </li>
+        <li data-name="Attack on Titan">
+            <a href="aot.html">
+                <img src="images/attack.jpg" alt="Attack on Titan" />
+                <span class="cat-name">Attack on Titan</span>
+            </a>
+        </li>
+        <li data-name="Demon Slayer">
+            <a href="demonslayer.html">
+                <img src="images/demon.jpeg" alt="Demon Slayer" />
+                <span class="cat-name">Demon Slayer</span>
+            </a>
+        </li>
+        <li data-name="Jujutsu Kaisen" data-tag="Tendance">
+            <a href="jujutsu.html">
+                <img src="images/jjk.jpg" alt="Jujutsu Kaisen" />
+                <span class="cat-name">Jujutsu Kaisen</span>
+                <span class="badge tendance">Tendance</span>
+            </a>
+        </li>
+        <li data-name="Autre">
+            <a href="autre.html">
+                <img src="images/porche.jpg" alt="Autres modèles" />
+                <span class="cat-name">🧢 Autre</span>
+            </a>
+        </li>
+        <li data-name="Fille">
+            <a href="fille.html">
+                <img src="images/girl.jpg" alt="Sacs pour filles" />
+                <span class="cat-name">👧 Fille</span>
+            </a>
+        </li>
+        <li data-name="Garçon">
+            <a href="garcon.html">
+                <img src="images/boy.jpg" alt="Sacs de marque" />
+                <span class="cat-name">Garçon</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<header>
+    <div class="decoration"></div>
+    🎒 Boutique de Sacs à Dos Personnalisés
+</header>
+
+<div class="promo-banner">
+    🌟 Promotion spéciale rentrée : -20% sur tous les sacs jusqu'au 15 septembre ! 🌟
+</div>
+
+<div class="categories">
+    <a href="naruto.html" class="card">
+        <img src="images/naruto1.jpg" alt="Naruto" />
+        <div class="badge">Nouveau</div>
+        <div class="card-title">Naruto</div>
+    </a>
+    <a href="onepiece.html" class="card">
+        <img src="images/one.jpg" alt="One Piece" />
+        <div class="card-title">One Piece</div>
+    </a>
+    <a href="dbz.html" class="card">
+        <img src="images/dbz.jpg" alt="Dragon Ball Z" />
+        <div class="badge">Populaire</div>
+        <div class="card-title">Dragon Ball Z</div>
+    </a>
+    <a href="aot.html" class="card">
+        <img src="images/attack.jpg" alt="Attack on Titan" />
+        <div class="card-title">Attack on Titan</div>
+    </a>
+    <a href="demonslayer.html" class="card">
+        <img src="images/demon.jpeg" alt="Demon Slayer" />
+        <div class="card-title">Demon Slayer</div>
+    </a>
+    <a href="jujutsu.html" class="card">
+        <img src="images/jjk.jpg" alt="Jujutsu Kaisen" />
+        <div class="badge">Tendance</div>
+        <div class="card-title">Jujutsu Kaisen</div>
+    </a>
+    <a href="autre.html" class="card">
+        <img src="images/porche.jpg" alt="Autres modèles" />
+        <div class="card-title">🧢 Autre</div>
+    </a>
+    <a href="fille.html" class="card">
+        <img src="images/girl.jpg" alt="Sacs pour filles" />
+        <div class="card-title">👧 Fille</div>
+    </a>
+    <a href="garcon.html" class="card">
+        <img src="images/boy.jpg" alt="Sacs de marque" />
+        <div class="card-title">Garçon</div>
+    </a>
+</div>
+
+<!-- BOUTON CONTACT FIXE -->
+<a href="https://m.me/tonprofilmessenger" target="_blank" class="btn-contact" aria-label="Contacter sur Messenger">
+    💬
+</a>
+
+<script>
+    // Ouvrir/fermer panneau catégories
+    const btnCategories = document.querySelector('.btn-categories');
+    const sideDrawer = document.getElementById('side-drawer');
+    const drawerClose = document.querySelector('.drawer-close');
+    const searchInput = document.getElementById('search-categories');
+    const categoriesList = document.getElementById('categories-list');
+
+    btnCategories.addEventListener('click', () => {
+        const expanded = btnCategories.getAttribute('aria-expanded') === 'true';
+        btnCategories.setAttribute('aria-expanded', !expanded);
+        sideDrawer.classList.toggle('active');
+        sideDrawer.setAttribute('aria-hidden', expanded);
+        if (!expanded) {
+            searchInput.focus();
+        }
+    });
+
+    drawerClose.addEventListener('click', () => {
+        sideDrawer.classList.remove('active');
+        btnCategories.setAttribute('aria-expanded', false);
+        sideDrawer.setAttribute('aria-hidden', true);
+    });
+
+    // Recherche dans catégories
+    searchInput.addEventListener('input', () => {
+        const filter = searchInput.value.toLowerCase();
+        const items = categoriesList.querySelectorAll('li');
+        items.forEach(li => {
+            const name = li.getAttribute('data-name').toLowerCase();
+            if (name.includes(filter)) {
+                li.style.display = '';
+            } else {
+                li.style.display = 'none';
+            }
+        });
+    });
+
+    // Fermer panneau avec touche ESC
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && sideDrawer.classList.contains('active')) {
+            sideDrawer.classList.remove('active');
+            btnCategories.setAttribute('aria-expanded', false);
+            sideDrawer.setAttribute('aria-hidden', true);
+            btnCategories.focus();
+        }
+    });
+</script>
+
+</body>
+</html>
