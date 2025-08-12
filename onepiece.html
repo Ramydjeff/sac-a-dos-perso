@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sacs One Piece - Sacs à Dos DZ</title>
+    <style>
+        :root {
+            --primary: #000;
+            --secondary: #ff9800;
+            --bg-overlay: rgba(0, 0, 0, 0.8);
+            --text-light: #fff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/one.jpg') no-repeat center center/cover;
+            color: var(--text-light);
+        }
+
+        .overlay {
+            background-color: var(--bg-overlay);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #1c1c1c;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+        }
+
+        .price {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .buy-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .buy-btn:hover {
+            background-color: #e67e00;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #fff;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <h1>Sacs inspirés de One Piece</h1>
+
+    <div class="grid">
+        <div class="card">
+            <img src="op1.jpg" alt="Sac One Piece 1">
+            <div class="card-content">
+                <h3>Modèle "Luffy Gomu Gomu"</h3>
+                <p class="price">2500 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op2.jpg" alt="Sac One Piece 2">
+            <div class="card-content">
+                <h3>Modèle "Zoro 3 Sabres"</h3>
+                <p class="price">2800 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op3.jpg" alt="Sac One Piece 3">
+            <div class="card-content">
+                <h3>Modèle "Sanji Chef Pirate"</h3>
+                <p class="price">3000 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op4.jpg" alt="Sac One Piece 4">
+            <div class="card-content">
+                <h3>Modèle "Ace Flamme"</h3>
+                <p class="price">2700 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op5.jpg" alt="Sac One Piece 5">
+            <div class="card-content">
+                <h3>Modèle "Shanks le Roux"</h3>
+                <p class="price">2900 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op6.jpg" alt="Sac One Piece 6">
+            <div class="card-content">
+                <h3>Modèle "Chopper Médecin"</h3>
+                <p class="price">2600 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op7.jpg" alt="Sac One Piece 7">
+            <div class="card-content">
+                <h3>Modèle "Law Coeur"</h3>
+                <p class="price">2500 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op8.jpg" alt="Sac One Piece 8">
+            <div class="card-content">
+                <h3>Modèle "Barbe Blanche"</h3>
+                <p class="price">3100 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="op9.jpg" alt="Sac One Piece 9">
+            <div class="card-content">
+                <h3>Modèle "Logo Mugiwara"</h3>
+                <p class="price">2400 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+    </div>
+
+    <a class="back-btn" href="index.html">&larr; Retour à la boutique</a>
+</div>
+</body>
+</html>

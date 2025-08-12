@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sacs Fille - Sacs à Dos DZ</title>
+    <style>
+        :root {
+            --primary: #fff0f6;
+            --secondary: #ff69b4;
+            --bg-overlay: rgba(255, 192, 203, 0.8);
+            --text-dark: #111;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/fille.jpg') no-repeat center center/cover;
+            color: var(--text-dark);
+        }
+
+        .overlay {
+            background-color: var(--bg-overlay);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #ffeef5;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+        }
+
+        .price {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .buy-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .buy-btn:hover {
+            background-color: #ff3c8f;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            background: none;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+
+        .back-btn:hover {
+            background-color: #fff;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <h1>Modèles Fille - Tendances & Couleurs Douces</h1>
+
+    <div class="grid">
+        <div class="card">
+            <img src="fille1.jpg" alt="Sac Fille 1">
+            <div class="card-content">
+                <h3>Modèle "Licorne Rose"</h3>
+                <p class="price">2500 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille2.jpg" alt="Sac Fille 2">
+            <div class="card-content">
+                <h3>Modèle "Papillons Pastel"</h3>
+                <p class="price">2600 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille3.jpg" alt="Sac Fille 3">
+            <div class="card-content">
+                <h3>Modèle "Hello Kitty Dream"</h3>
+                <p class="price">2700 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille4.jpg" alt="Sac Fille 4">
+            <div class="card-content">
+                <h3>Modèle "Fleur Sakura"</h3>
+                <p class="price">2800 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille5.jpg" alt="Sac Fille 5">
+            <div class="card-content">
+                <h3>Modèle "Arc-en-Ciel"</h3>
+                <p class="price">2500 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille6.jpg" alt="Sac Fille 6">
+            <div class="card-content">
+                <h3>Modèle "Daisy Cute"</h3>
+                <p class="price">2400 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille7.jpg" alt="Sac Fille 7">
+            <div class="card-content">
+                <h3>Modèle "Petit Coeur"</h3>
+                <p class="price">2300 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille8.jpg" alt="Sac Fille 8">
+            <div class="card-content">
+                <h3>Modèle "Paillettes Fée"</h3>
+                <p class="price">2600 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="fille9.jpg" alt="Sac Fille 9">
+            <div class="card-content">
+                <h3>Modèle "Chat Mignon"</h3>
+                <p class="price">2550 DA</p>
+                <a class="buy-btn" href="https://m.me/tonpage">Commander</a>
+            </div>
+        </div>
+    </div>
+
+    <a class="back-btn" href="index.html">&larr; Retour à la boutique</a>
+</div>
+</body>
+</html>
